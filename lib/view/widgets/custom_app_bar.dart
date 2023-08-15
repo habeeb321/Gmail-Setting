@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gmail_settings/core/constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -35,7 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             height: 40,
             width: Get.size.width * 0.5,
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: const Color(0xffEAF1FB),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -49,13 +50,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 const SizedBox(width: 8),
                 const Text(
-                  'Search Mail',
-                  style: TextStyle(color: Colors.grey),
+                  'Search mail',
+                  style: TextStyle(color: Colors.black, fontSize: 17),
                   overflow: TextOverflow.fade,
                 ),
                 const Spacer(),
                 IconButton(
-                  icon: const Icon(Icons.tune),
+                  icon: const Icon(
+                    Icons.tune,
+                    color: Constants.black,
+                  ),
                   onPressed: () {
                     // Implement your help icon action
                   },
@@ -92,6 +96,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(width: 16),
       ],
     );
-    
   }
 }
