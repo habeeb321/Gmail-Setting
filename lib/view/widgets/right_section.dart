@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gmail_settings/controller/setting_controller.dart';
@@ -188,7 +189,7 @@ class RightSection extends GetView<SettingController> {
                                     SizedBox(width: Get.width * 0.013),
                                     SizedBox(
                                       height: 70,
-                                      width: Get.width * 0.3,
+                                      width: Get.width * 0.36,
                                       child: Material(
                                         elevation:
                                             4, // Adjust the elevation value as needed
@@ -225,15 +226,281 @@ class RightSection extends GetView<SettingController> {
                                                         );
                                                       }).toList(),
                                                     ),
+                                                    Constants.width10,
+                                                    SizedBox(
+                                                      height: 40,
+                                                      child: Card(
+                                                        child: Row(
+                                                          children: [
+                                                            const Icon(Icons
+                                                                .format_size),
+                                                            IconButton(
+                                                              onPressed: () {},
+                                                              icon: const Icon(Icons
+                                                                  .arrow_drop_down),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Constants.width5,
+                                                    SizedBox(
+                                                      height: 40,
+                                                      child: Card(
+                                                        child: Row(
+                                                          children: [
+                                                            const Icon(Icons
+                                                                .text_format),
+                                                            IconButton(
+                                                              onPressed: () {},
+                                                              icon: const Icon(Icons
+                                                                  .arrow_drop_down),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Constants.width5,
+                                                    SizedBox(
+                                                      height: 40,
+                                                      child: Card(
+                                                        child: IconButton(
+                                                          onPressed: () {},
+                                                          icon: const Icon(Icons
+                                                              .format_clear),
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                                 const Text(
-                                                    'This is what your body text will look like.'),
+                                                  'This is what your body text will look like.',
+                                                ),
                                               ],
                                             ),
                                           ),
                                         ),
                                       ),
+                                    ),
+                                  ],
+                                ),
+                                const Divider(),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'Stars:',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(width: Get.width * 0.12),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: Get.width * 0.6,
+                                          child: const Text.rich(
+                                            TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                    text:
+                                                        'Drag the stars between the lists. ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                                TextSpan(
+                                                  text:
+                                                      'The stars will rotate in the order shown below when you click successively. To learn the name of a star\nfor search, hover your mouse over the image.',
+                                                ),
+                                              ],
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                          ),
+                                        ),
+                                        Constants.height10,
+                                        Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              const TextSpan(
+                                                  text: 'Presets:         '),
+                                              TextSpan(
+                                                text: '1 star         ',
+                                                style: const TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 32, 104, 228),
+                                                ),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {},
+                                              ),
+                                              TextSpan(
+                                                text: '4 stars         ',
+                                                style: const TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 32, 104, 228),
+                                                ),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {},
+                                              ),
+                                              TextSpan(
+                                                text: 'all stars         ',
+                                                style: const TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 32, 104, 228),
+                                                ),
+                                                recognizer:
+                                                    TapGestureRecognizer()
+                                                      ..onTap = () {},
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Constants.height10,
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            GetBuilder<SettingController>(
+                                              builder: (controller) => Row(
+                                                children: [
+                                                  const Text(
+                                                    'In use:             ',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  DragTarget<Color>(
+                                                    builder: (context,
+                                                        candidateData,
+                                                        rejectedData) {
+                                                      return Icon(
+                                                        Icons.star,
+                                                        color: controller
+                                                                .acceptedStarColors
+                                                                .isEmpty
+                                                            ? const Color(
+                                                                0xffF7C94B)
+                                                            : controller
+                                                                .acceptedStarColors
+                                                                .last,
+                                                      );
+                                                    },
+                                                    onAccept:
+                                                        (Color starColor) {
+                                                      controller.updateStar(
+                                                          starColor);
+                                                    },
+                                                  ),
+                                                  SizedBox(
+                                                      width:
+                                                          Get.width * 0.0135),
+                                                  DragTarget<Color>(
+                                                    builder: (context,
+                                                        candidateData,
+                                                        rejectedData) {
+                                                      return Icon(
+                                                        Icons.star,
+                                                        color: controller
+                                                                .acceptedStarColors
+                                                                .isEmpty
+                                                            ? const Color(
+                                                                0xffF7C94B)
+                                                            : controller
+                                                                .acceptedStarColors
+                                                                .last,
+                                                      );
+                                                    },
+                                                    onAccept:
+                                                        (Color starColor) {
+                                                      controller.updateStar(
+                                                          starColor);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Constants.height10,
+                                            Row(
+                                              children: [
+                                                const Text(
+                                                  'Not in use:',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                SizedBox(
+                                                    width: Get.width * 0.0135),
+                                                const Draggable<Color>(
+                                                  data: Color(0xffF7A14C),
+                                                  feedback: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffF7A14C),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffF7A14C),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    width: Get.width * 0.0135),
+                                                const Draggable<Color>(
+                                                  data: Color(0xffE57B72),
+                                                  feedback: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffE57B72),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffE57B72),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    width: Get.width * 0.0135),
+                                                const Draggable<Color>(
+                                                  data: Color(0xffB967C7),
+                                                  feedback: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffB967C7),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffB967C7),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    width: Get.width * 0.0135),
+                                                const Draggable<Color>(
+                                                  data: Color(0xff7AA9F7),
+                                                  feedback: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xff7AA9F7),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xff7AA9F7),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    width: Get.width * 0.0135),
+                                                const Draggable<Color>(
+                                                  data: Color(0xff57BA89),
+                                                  feedback: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xff57BA89),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: Color(0xff57BA89),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

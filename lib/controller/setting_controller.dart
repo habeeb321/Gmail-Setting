@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingController extends GetxController {
@@ -52,9 +53,15 @@ class SettingController extends GetxController {
     selectedFontStyle.value = newValue;
   }
 
-  final selectedIndex = 0.obs;
-  final list = [
-    // const InboxScreen(),
-    // const StarredScreen(),
-  ].obs;
+  // Color? acceptedStarColor;
+  // updateStar(starColor) {
+  //   acceptedStarColor = starColor;
+  //   update();
+  // }
+
+  final acceptedStarColors = <Color>[].obs;
+
+  void updateStar(Color starColor) {
+    acceptedStarColors.add(starColor);
+  }
 }
